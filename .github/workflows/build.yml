@@ -1,0 +1,40 @@
+name: Nebula OS ISO Build
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y live-build debootstrap squashfs-tools xorriso
+
+      - name: Clean old build
+        run: |
+          sudo lb clean || true
+          rm -rf auto config/chroot binary cache || true
+
+      - name: Configure ISO
+        run: |
+          lb config \
+            --distribution jammy \
+            --binary-images iso-hybrid \
+            --mode ubuntu
+
+      - name: Build ISO
+        run: |
+          sudo lb build
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: nebula-iso
+          path: "*.iso"
