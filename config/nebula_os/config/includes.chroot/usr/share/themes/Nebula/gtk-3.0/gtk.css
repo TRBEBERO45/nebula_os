@@ -1,0 +1,12 @@
+/* Nebula Theme - test */
+
+window {
+    background-color: #0b0f1a;
+    color: #ffffff;
+}
+
+button {
+    background-color: #6a00ff;
+    color: white;
+    border-radius: 8px;
+}
