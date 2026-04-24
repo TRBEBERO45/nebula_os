@@ -1,0 +1,10 @@
+sudo
+bash
+coreutils
+systemd
+network-manager
+ca-certificates
+wget
+curl
+nano
+vim
