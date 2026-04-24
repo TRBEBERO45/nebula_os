@@ -12,3 +12,5 @@ bash
 coreutils
 wget
 curl
+gnome-software
+flatpak
